@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Motion Definition",
+  "type": "object",
+  "properties": {
+    "coins": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CoinData"
+      }
+    }
+  },
+  "required": ["coins"],
+  "definitions": {
+    "CoinData": {
+      "type": "object",
+      "properties": {
+        "totalDuration": { "type": "number", "minimum": 0 },
+        "phases": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/SkillPhase" }
+        },
+        "hitCheckers": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/HitCheckerData" }
+        }
+      },
+      "required": ["totalDuration", "phases"]
+    },
+    "SkillPhase": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": ["Relative", "ToTargetWide", "GiveDamage"]
+        },
+        "start": { "type": "number", "minimum": 0, "maximum": 1 },
+        "end": { "type": "number", "minimum": 0, "maximum": 1 },
+        "steps": { "type": "integer", "minimum": 1 },
+        "move": { "$ref": "#/definitions/Vec3Data" },
+        "isRefreshDir": { "type": "boolean" },
+        "damage": { "$ref": "#/definitions/DamageData" },
+        "sturn": { "$ref": "#/definitions/SturnData" }
+      },
+      "required": ["type", "start", "end", "steps"]
+    },
+    "HitCheckerData": {
+      "type": "object",
+      "properties": {
+        "time": { "type": "number", "minimum": 0, "maximum": 1, "default": 0 },
+        "isNextMotionCoinDelay": { "type": "number", "default": 0 }
+      }
+    },
+    "Vec3Data": {
+      "type": "object",
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "z": { "type": "number" }
+      }
+    },
+    "DamageData": {
+      "type": "object",
+      "properties": {
+        "multiHit": { "type": "integer", "minimum": 1, "default": 1 },
+        "isUpAttack": { "type": "boolean", "default": false }
+      }
+    },
+    "SturnData": {
+      "type": "object",
+      "properties": {
+        "sturnType": {
+          "type": "string",
+          "enum": ["AIRBORNE", "KNOCKBACK", "HOLDING", "STURN", "NONE"],
+          "default": "KNOCKBACK"
+        },
+        "sturnDir": {
+          "type": "string",
+          "enum": [
+            "DIR_ACTOR",
+            "DIR_TARGET",
+            "DIR_TOACTOR",
+            "DIR_TOTARGET",
+            "NONE"
+          ],
+          "default": "NONE"
+        },
+        "sturnTiming": {
+          "type": "string",
+          "enum": ["ALL", "FIRST", "LAST", "NONE"],
+          "default": "NONE"
+        },
+        "forcePower": { "type": "number", "default": 0.0 },
+        "randomPower": { "type": "number", "default": 0.0 },
+        "airborneAngle": { "type": "number", "default": 0.0 },
+        "isRotateTarget": { "type": "boolean", "default": false },
+        "targetRotateAngle": { "type": "number", "default": 0.0 }
+      }
+    }
+  }
+}
