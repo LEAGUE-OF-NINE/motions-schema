@@ -31,7 +31,7 @@
       "type": "object",
       "properties": {
         "type": {
-          "enum": ["Relative", "ToTargetWide", "GiveDamage"]
+          "enum": ["Relative", "ToTargetWide", "GiveDamage", "MoveEnemy"]
         },
         "start": { "type": "number", "minimum": 0, "maximum": 1 },
         "end": { "type": "number", "minimum": 0, "maximum": 1 },
