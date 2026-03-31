@@ -27,6 +27,10 @@
         "zooms": {
           "type": "array",
           "items": { "$ref": "#/definitions/ZoomData" }
+        },
+        "rotates": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/RotateData" }
         }
       },
       "required": ["totalDuration", "phases"]
@@ -44,45 +48,56 @@
         "zoomDuration": { "type": "number", "default": -1.0 },
         "isRelative": { "type": "boolean", "default": true },
         "focusSpeed": { "type": "number", "default": 0.2 },
-        "easeType": {
-          "type": "string",
-          "enum": [
-            "Unset",
-            "Linear",
-            "InSine",
-            "OutSine",
-            "InOutSine",
-            "InQuad",
-            "OutQuad",
-            "InOutQuad",
-            "InCubic",
-            "OutCubic",
-            "InOutCubic",
-            "InQuart",
-            "OutQuart",
-            "InOutQuart",
-            "InQuint",
-            "OutQuint",
-            "InOutQuint",
-            "InExpo",
-            "OutExpo",
-            "InOutExpo",
-            "InCirc",
-            "OutCirc",
-            "InOutCirc",
-            "InElastic",
-            "OutElastic",
-            "InOutElastic",
-            "InBack",
-            "OutBack",
-            "InOutBack",
-            "InBounce",
-            "OutBounce",
-            "InOutBounce"
-          ],
-          "default": "Unset"
-        }
+        "easeType": { "$ref": "#/definitions/EaseType" }
       }
+    },
+    "RotateData": {
+      "type": "object",
+      "properties": {
+        "start": { "type": "number", "minimum": 0, "maximum": 1, "default": 0 },
+        "duration": { "type": "number", "minimum": 0, "default": 0.5 },
+        "targetAngle": { "$ref": "#/definitions/Vec3Data" },
+        "focusRotateSpeed": { "type": "number", "default": 0.2 },
+        "easeType": { "$ref": "#/definitions/EaseType" }
+      }
+    },
+    "EaseType": {
+      "type": "string",
+      "enum": [
+        "Unset",
+        "Linear",
+        "InSine",
+        "OutSine",
+        "InOutSine",
+        "InQuad",
+        "OutQuad",
+        "InOutQuad",
+        "InCubic",
+        "OutCubic",
+        "InOutCubic",
+        "InQuart",
+        "OutQuart",
+        "InOutQuart",
+        "InQuint",
+        "OutQuint",
+        "InOutQuint",
+        "InExpo",
+        "OutExpo",
+        "InOutExpo",
+        "InCirc",
+        "OutCirc",
+        "InOutCirc",
+        "InElastic",
+        "OutElastic",
+        "InOutElastic",
+        "InBack",
+        "OutBack",
+        "InOutBack",
+        "InBounce",
+        "OutBounce",
+        "InOutBounce"
+      ],
+      "default": "Unset"
     },
     "SkillPhase": {
       "type": "object",
