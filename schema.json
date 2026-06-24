@@ -5,9 +5,7 @@
   "properties": {
     "coins": {
       "type": "array",
-      "items": {
-        "$ref": "#/definitions/CoinData"
-      }
+      "items": { "$ref": "#/definitions/CoinData" }
     }
   },
   "required": ["coins"],
@@ -31,9 +29,27 @@
         "rotates": {
           "type": "array",
           "items": { "$ref": "#/definitions/RotateData" }
+        },
+        "shakes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ShakeData" }
+        },
+        "vfx": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1 },
+          "description": "1-indexed indices into the character's original VFX track list (logged at startup)"
         }
       },
       "required": ["totalDuration", "phases"]
+    },
+    "ShakeData": {
+      "type": "object",
+      "properties": {
+        "start": { "type": "number", "minimum": 0, "maximum": 1, "default": 0 },
+        "duration": { "type": "number", "minimum": 0, "default": 0.5 },
+        "intensity": { "type": "number", "default": 0.15 },
+        "decay": { "type": "number", "default": 3.0 }
+      }
     },
     "ZoomData": {
       "type": "object",
@@ -134,7 +150,8 @@
       "type": "object",
       "properties": {
         "multiHit": { "type": "integer", "minimum": 1, "default": 1 },
-        "isUpAttack": { "type": "boolean", "default": false }
+        "isUpAttack": { "type": "boolean", "default": false },
+        "multiHitDuration": { "type": "number", "default": 0 }
       }
     },
     "SturnData": {
@@ -154,15 +171,15 @@
             "DIR_TOTARGET",
             "NONE"
           ],
-          "default": "NONE"
+          "default": "DIR_TOTARGET"
         },
         "sturnTiming": {
           "type": "string",
           "enum": ["ALL", "FIRST", "LAST", "NONE"],
-          "default": "NONE"
+          "default": "ALL"
         },
-        "forcePower": { "type": "number", "default": 0.0 },
-        "randomPower": { "type": "number", "default": 0.0 },
+        "forcePower": { "type": "number", "default": 5.0 },
+        "randomPower": { "type": "number", "default": 5.0 },
         "airborneAngle": { "type": "number", "default": 0.0 },
         "isRotateTarget": { "type": "boolean", "default": false },
         "targetRotateAngle": { "type": "number", "default": 0.0 }
