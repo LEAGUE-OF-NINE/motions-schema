@@ -127,6 +127,7 @@
         "move": { "$ref": "#/definitions/Vec3Data" },
         "isRefreshDir": { "type": "boolean" },
         "damage": { "$ref": "#/definitions/DamageData" },
+        "damageRatio":{ "type": "float", "minimum": 0, "maximum": 1},
         "sturn": { "$ref": "#/definitions/SturnData" }
       },
       "required": ["type", "start", "end", "steps"]
