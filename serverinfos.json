@@ -29,7 +29,8 @@
       "1.113.0",
       "1.114.0",
       "1.115.0",
-      "1.116.1"
+      "1.116.1",
+      "1.117.0"
     ],
     "serverUrl": "https://www.limbuscompanyapi.com",
     "logServerUrl": "https://battlelog.limbuscompanyapi.com",
